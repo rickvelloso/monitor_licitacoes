@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Licitações</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Monitor de Licitações</h1>
+        <p>Encontre itens comprados por órgãos públicos via PNCP.</p>
+    </header>
+
+    <main>
+        <form id="filtro-form">
+            <div class="form-group">
+                <label for="cnpj">CNPJ do Órgão:</label>
+                <input type="text" id="cnpj" name="cnpj" value="13825484000150" required>
+            </div>
+            <div class="form-group">
+                <label for="data_inicio">Data Início:</label>
+                <input type="date" id="data_inicio" name="data_inicio" required>
+            </div>
+            <div class="form-group">
+                <label for="data_fim">Data Fim:</label>
+                <input type="date" id="data_fim" name="data_fim" required>
+            </div>
+            <button type="submit" id="btn-buscar">Buscar Itens</button>
+        </form>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            Buscando dados no PNCP... Isso pode levar um minuto.
+        </div>
+        <div id="status-message"></div>
+
+        <div id="resultados-container">
+            </div>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
