@@ -1,45 +1,64 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor de Licitações</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
 
-    <header>
-        <h1>Monitor de Licitações</h1>
-        <p>Encontre itens comprados por órgãos públicos via PNCP.</p>
-    </header>
+{% block content %}
+    
+    <p class="subtitle">Encontre itens comprados por órgãos públicos via PNCP.</p>
 
-    <main>
-        <form id="filtro-form">
-            <div class="form-group">
-                <label for="cnpj">CNPJ do Órgão:</label>
-                <input type="text" id="cnpj" name="cnpj" value="13825484000150" required>
-            </div>
-            <div class="form-group">
-                <label for="data_inicio">Data Início:</label>
-                <input type="date" id="data_inicio" name="data_inicio" required>
-            </div>
-            <div class="form-group">
-                <label for="data_fim">Data Fim:</label>
-                <input type="date" id="data_fim" name="data_fim" required>
-            </div>
-            <button type="submit" id="btn-buscar">Buscar Itens</button>
-        </form>
-
-        <div id="loading" class="hidden">
-            <div class="spinner"></div>
-            Buscando dados no PNCP... Isso pode levar um minuto.
+    <form id="filtro-form">
+        <div class="form-group">
+            <label for="cnpj">CNPJ do Órgão:</label>
+            <input type="text" id="cnpj" name="cnpj" value="13825484000150" required>
         </div>
-        <div id="status-message"></div>
+        <div class="form-group">
+            <label for="data_inicio">Data Início:</label>
+            <input type="date" id="data_inicio" name="data_inicio" required>
+        </div>
+        <div class="form-group">
+            <label for="data_fim">Data Fim:</label>
+            <input type="date" id="data_fim" name="data_fim" required>
+        </div>
+        <button type="submit" id="btn-buscar">Buscar Itens</button>
+    </form>
 
-        <div id="resultados-container">
+    <div id="loading" class="hidden">
+        <div class="spinner"></div>
+        Buscando dados no PNCP... Isso pode levar um minuto.
+    </div>
+    <div id="status-message"></div>
+
+    <div id="resultados-container">
+        </div>
+    
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+{% endblock %}
+
+{% block after_main %}
+<div id="contribution-modal" class="modal-overlay hidden" style="display: none;">
+    <div class="modal-content">
+        <span class="modal-close-btn">&times;</span>
+        <h3>Contribuir com Análise de Preço</h3>
+        <p>Você está avaliando o item: <strong id="modal-item-descricao">...</strong></p>
+        
+        <form id="contribution-form">
+            <input type="hidden" id="modal-item-key" name="item_key">
+            <input type="hidden" id="modal-item-status" name="status">
+            
+            <div class="form-group-stacked">
+                <label for="modal-link">Link de Referência (Obrigatório)</label>
+                <input type="url" id="modal-link" name="link" class="form-control" placeholder="https://www.exemplo.com/produto" required>
             </div>
-    </main>
-
-    <script src="/static/app.js"></script>
-</body>
-</html>
+            
+            <div class="form-group-stacked">
+                <label for="modal-comment">Comentário (Opcional)</label>
+                <textarea id="modal-comment" name="comment" class="form-control" rows="3" placeholder="Ex: Este preço é para um kit com 10, não para a unidade."></textarea>
+            </div>
+            
+            <button type="submit" id="modal-submit" class="btn-submit">Enviar Contribuição</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

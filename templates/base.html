@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title or 'Monitor de Licitações' }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body data-is-authenticated="{{ current_user.is_authenticated | string | lower }}">
+
+    <header>
+        <h1><a href="{{ url_for('index') }}">Monitor de Licitações</a></h1>
+        
+        <nav class="user-nav">
+            {% if current_user.is_authenticated %}
+                <span>Olá, <strong>{{ current_user.username }}</strong>!</span>
+                <a href="{{ url_for('logout') }}" class="btn-nav">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
+                <a href="{{ url_for('register') }}" class="btn-nav btn-register">Registrar</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+    
+    {% block scripts %}{% endblock %}
+
+    {% block after_main %}{% endblock %}
+</body>
+</html>

@@ -1,4 +1,4 @@
-/* Reset básico e fontes */
+/* --- Reset básico e fontes --- */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f4f7f6;
@@ -8,18 +8,61 @@ body {
     padding: 0;
 }
 
+/* --- Header e Navegação (do base.html) --- */
 header {
     background-color: #0056b3;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header h1 {
     margin: 0;
+    font-size: 1.5em;
 }
 
+header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+.user-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-nav span {
+    font-size: 0.9em;
+}
+
+.btn-nav {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #f4f7f6;
+    color: #0056b3;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+.btn-nav:hover {
+    background-color: #ddd;
+}
+.btn-nav.btn-register {
+    background-color: #007bff;
+    color: white;
+}
+.btn-nav.btn-register:hover {
+    background-color: #0056b3;
+}
+
+/* --- Conteúdo Principal (Main) --- */
 main {
     max-width: 1200px;
     margin: 20px auto;
@@ -29,7 +72,15 @@ main {
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
 }
 
-/* Formulário de Filtro */
+main > .subtitle {
+    text-align: center;
+    font-size: 1.2em;
+    color: #555;
+    margin-top: -10px;
+    margin-bottom: 20px;
+}
+
+/* --- Formulário de Filtro (da index.html) --- */
 #filtro-form {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -48,14 +99,14 @@ main {
     margin-bottom: 5px;
 }
 
-.form-group input, button {
+.form-group input, button#btn-buscar {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
 }
 
-button {
+button#btn-buscar {
     background-color: #007bff;
     color: white;
     border: none;
@@ -63,16 +114,16 @@ button {
     transition: background-color 0.2s;
 }
 
-button:hover {
+button#btn-buscar:hover {
     background-color: #0056b3;
 }
 
-button:disabled {
+button#btn-buscar:disabled {
     background-color: #aaa;
     cursor: not-allowed;
 }
 
-/* Feedback (Loading e Mensagens) */
+/* --- Feedback (Loading e Mensagens) --- */
 .hidden {
     display: none;
 }
@@ -120,10 +171,9 @@ button:disabled {
     color: #2e7d32;
 }
 
-
-/* Tabela de Resultados */
+/* --- Tabela de Resultados --- */
 #resultados-container {
-    overflow-x: auto; /* Permite rolar a tabela em telas pequenas */
+    overflow-x: auto;
 }
 
 table {
@@ -157,42 +207,207 @@ td:nth-child(1) { /* Descrição */
     min-width: 300px;
 }
 td:nth-child(2), /* Qtd */
-td:nth-child(3), /* Vlr Unit */
-td:nth-child(4) { /* Vlr Total */
+td:nth-child(3) { /* Vlr Unit */
     text-align: right;
     min-width: 120px;
 }
 
-/* ... (Todo o seu CSS anterior) ... */
-
-/* Estilo para o botão de link para o PNCP */
+/* --- Estilo para o link "Ver Edital" --- */
 .link-pncp {
     display: inline-block;
     padding: 5px 10px;
     background-color: #007bff;
-    color: white !important; /* Força a cor do texto */
+    color: white !important;
     text-decoration: none;
     border-radius: 4px;
     font-size: 0.9em;
     text-align: center;
     transition: background-color 0.2s;
 }
-
 .link-pncp:hover {
     background-color: #0056b3;
 }
 
-/* Linha destacada para Lotes/Anexos */
+/* --- Linha destacada para Lotes/Anexos --- */
 .linha-aviso {
-    background-color: #fffbe6; /* Um amarelo-claro de aviso */
+    background-color: #fffbe6;
 }
-
 .linha-aviso td:first-child {
     line-height: 1.4;
 }
-
 .linha-aviso td:first-child small {
     font-weight: normal;
     color: #555;
     font-style: italic;
+}
+
+/* --- Estilos de Formulário (Login/Register) --- */
+.form-wrapper {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.form-wrapper h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.form-group-stacked {
+    margin-bottom: 15px;
+}
+
+.form-group-stacked label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+.form-error {
+    color: #c62828;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+/* --- Estilos das Mensagens Flash --- */
+.flash-messages {
+    margin-bottom: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.flash {
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: 600;
+    text-align: center;
+}
+.flash-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+.flash-error {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+/* --- (NOVO) Estilos da Seção de Contribuição (Votos) --- */
+.vote-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #eee;
+}
+
+.vote-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn-vote {
+    padding: 4px 8px;
+    font-size: 0.85em;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn-vote:hover {
+    border-color: #333;
+    background-color: #eee;
+}
+.btn-vote[data-vote-status="SOBREPRECO"]:hover {
+    background-color: #ffebee;
+    border-color: #c62828;
+}
+.btn-vote[data-vote-status="PRECO_OK"]:hover {
+    background-color: #e8f5e9;
+    border-color: #2e7d32;
+}
+.btn-vote[data-vote-status="ABAIXO_PRECO"]:hover {
+    background-color: #e6f0ff;
+    border-color: #0056b3;
+}
+
+.vote-counts {
+    font-size: 0.9em;
+    color: #555;
+}
+.vote-counts span {
+    margin-right: 10px;
+}
+
+/* --- (NOVO) Estilos do Modal de Contribuição --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2.0em;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+.modal-close-btn:hover {
+    color: #333;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+}
+
+/* Garante que o modal use os estilos de formulário que já temos */
+.modal-content .form-group-stacked {
+    margin-bottom: 15px;
 }
